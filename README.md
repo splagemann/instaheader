@@ -1,12 +1,7 @@
 instaheader
 ====
 
-Create an Instagram-style header with changing pictures
-
-Support:
-
-* not really tested yet
-* should work in all major browsers
+Create an Instagram-style header with changing pictures. [Demo](http://splagemann.github.io/instaheader/).
 
 How to Use
 ----------
@@ -41,3 +36,8 @@ bower install instaheader
    ```html
    <script>$('#container').instaheader();</script>
    ```
+
+Support:
+--------
+* not really tested yet
+* should work in all major browsers
