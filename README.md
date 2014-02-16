@@ -13,13 +13,13 @@ bower install instaheader
 ```
 
 1. Add a container with some images. You can add new images as data-attributes or load them from web (see options).
-   ```html
-       <div id="container" data-images='["img/pic4.jpg", "img/pic5.jpg", "img/pic6.jpg"]'>
-           <img src="img/pic1.jpg">
-           <img src="img/pic2.jpg">
-           <img src="img/pic3.jpg">
-       </div>
-   ```
+    ```html
+    <div id="container" data-images='["img/pic4.jpg", "img/pic5.jpg", "img/pic6.jpg"]'>
+        <img src="img/pic1.jpg">
+        <img src="img/pic2.jpg">
+        <img src="img/pic3.jpg">
+    </div>
+    ```
 
 2. Add the plugin after jQuery at the bottom of the body.
 
