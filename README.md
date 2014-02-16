@@ -13,16 +13,23 @@ bower install instaheader
 ```
 
 
-1. Add a container and some images.
+1.1. Add a container with some images. New images are loaded from web
 
     ```html
     <div id="container">
 		<img src="img/pic1.jpg">
 		<img src="img/pic2.jpg">
 		<img src="img/pic3.jpg">
-		<img src="img/pic4.jpg">
-		<img src="img/pic5.jpg">
-		<img src="img/pic6.jpg">
+	</div>
+	```
+or 
+
+1.2. Add some images as data-attribute
+	```html
+	<div id="container" data-images='["img/pic4.jpg", "img/pic5.jpg", "img/pic6.jpg"]'>
+		<img src="img/pic1.jpg">
+		<img src="img/pic2.jpg">
+		<img src="img/pic3.jpg">
 	</div>
 	```
 
@@ -35,6 +42,17 @@ bower install instaheader
 3. Call the plugin.
    ```html
    <script>$('#container').instaheader();</script>
+   ```
+
+4. Options
+   ```html
+   <script>
+   $('#container').instaheader({
+       reuseImages : false,
+       delay       : 3000,
+       imageUrl    : 'http://path/to/new/image/url' // or null if you use data-attribute
+   });
+   </script>
    ```
 
 Support:
