@@ -2,47 +2,63 @@
 
     $.fn.instaheader = function(options) {
 
-        var settings = $.extend({
-            selector     : 'img',                   // jQuery selector to find images that should be replaced
-            imageUrl     : null,                    // @todo get new images from url
-            reuseImages  : true,                    // reuse already displayed images
-            delay        : 2000                     // timedelay (ms) for switching next image
-        }, options);
+        return this.each(function(index, element) {
 
-        var images           = this.find(settings.selector);
-        var cntImages        = images.length;
-        var imagesHidden     = new Array();
-        if (settings.imageUrl === null) {
-            imagesHidden = this.data('images');
-        }
+            element = $(element);
 
-        var replaceImage = function() {
-            
-            if (settings.imageUrl !== null) {
-                $.get(settings.imageUrl, function(response) {
-                    imagesHidden = new Array(response);
-                });
+            var settings = $.extend({
+                selector     : 'img',                   // jQuery selector to find images that should be replaced
+                imageUrl     : null,                    // load images from this url
+                reuseImages  : true,                    // reuse already displayed images
+                delay        : 2000,                    // timedelay (ms) for switching next image
+                background   : false                    // replace background image        
+            }, options);
+
+            var images           = element.find(settings.selector);
+            var cntImages        = images.length;
+            var imagesHidden     = new Array();
+            if (settings.imageUrl === null) {
+                imagesHidden = element.data('images');
             }
 
-            if (imagesHidden.length > 0) {
-                replaceImageNumber = Math.floor(Math.random()*cntImages);
+            var replaceImage = function() {
                 
-                if (settings.reuseImages) {
-                    imagesHidden.push($(images[replaceImageNumber]).attr('src'));
+                if (settings.imageUrl !== null) {
+                    $.get(settings.imageUrl, function(response) {
+                        imagesHidden = new Array(response);
+                    });
                 }
-            
-                $(images[replaceImageNumber]).fadeOut('fast', function() {
-                    $(this).attr('src', imagesHidden.shift());
-                }).fadeIn('fast');
-            
-            } else {
-                clearInterval(replaceImage);
+
+                if (imagesHidden.length > 0) {
+                    replaceImageNumber = Math.floor(Math.random()*cntImages);
+                    
+                    if (settings.reuseImages) {
+                        if (settings.background) {
+                            var bg = $(images[replaceImageNumber]).css('background-image');
+                            bg = /^url\((['"]?)(.*)\1\)$/.exec(bg);
+                            if (bg) {
+                                imagesHidden.push(bg[2]);
+                            }
+                        } else {
+                            imagesHidden.push($(images[replaceImageNumber]).attr('src'));
+                        }
+                    }
+                
+                    $(images[replaceImageNumber]).fadeOut('fast', function() {
+                        if (settings.background) {
+                            $(this).css('background-image', 'url(' + imagesHidden.shift() + ')');
+                        } else {
+                            $(this).attr('src', imagesHidden.shift());
+                        }
+                    }).fadeIn('fast');
+                
+                } else {
+                    clearInterval(replaceImage);
+                }
             }
-        }
 
-        setInterval(replaceImage, settings.delay);
-
-        return this;
+            setInterval(replaceImage, settings.delay);
+        });
     };
 
 }(jQuery));
