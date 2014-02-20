@@ -36,8 +36,10 @@ bower install instaheader
     ```html
     <script>
         $('#container').instaheader({
-            reuseImages : false,
-            delay       : 3000,
+            selector     : 'img',                        // jQuery selector to find images that should be replaced
+            background   : false,                        // true, if you want to change background images 
+            reuseImages : false,                         // true, if you are using data-attribute and want to reuse images
+            delay       : 3000,                          // delay (ms)
             imageUrl    : 'http://path/to/new/image/url' // or null if you use data-attribute
         });
    </script>
