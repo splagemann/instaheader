@@ -9,7 +9,7 @@ How to Use
 [Download](https://github.com/splagemann/instaheader/archive/master.zip) or install with bower.
 
 ```
-bower install instaheader
+bower install --save instaheader
 ```
 
 1. Add a container with some images. You can add new images as data-attributes or load them from web (see options).
@@ -36,10 +36,10 @@ bower install instaheader
     ```html
     <script>
         $('#container').instaheader({
-            selector     : 'img',                        // jQuery selector to find images that should be replaced
-            background   : false,                        // true, if you want to change background images 
+            selector    : 'img',                         // jQuery selector to find images that should be replaced
+            background  : false,                         // true, if you want to change background images
             reuseImages : false,                         // true, if you are using data-attribute and want to reuse images
-            delay       : 3000,                          // delay (ms)
+            delay       : 3000,                          // delay (ms) before switching to next image
             imageUrl    : 'http://path/to/new/image/url' // or null if you use data-attribute
         });
    </script>
